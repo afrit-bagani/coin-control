@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import { PrismaClient } from "@prisma/client";
+import { withAccelerate } from "@prisma/extension-accelerate";
 import cors from "cors";
 
 // local import
@@ -13,7 +14,7 @@ import { authenticate } from "./middleware/auth.middleware";
 dotenv.config();
 
 const app = express();
-export const prisma = new PrismaClient();
+export const prisma = new PrismaClient().$extends(withAccelerate());
 
 const PORT = process.env.PORT || 3000;
 
