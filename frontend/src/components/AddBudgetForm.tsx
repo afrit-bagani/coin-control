@@ -16,7 +16,7 @@ export default function AddBudgetForm() {
       </h1>
       <fetcher.Form method="post" className="space-y-4">
         <input type="hidden" name="_action" value="createBudget" />
-        <input type="hidden" name="userId" value={user.id} />
+        <input type="hidden" name="userId" value={user?.id} />
         <div className="text-gray-700 text-sm md:text-lg font-medium">
           <label htmlFor="budget-name">Budget Name</label>
           <input
