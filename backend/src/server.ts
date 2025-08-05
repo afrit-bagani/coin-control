@@ -13,5 +13,5 @@ app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 app.use(express.json());
 
 app.use("/auth", authRouter);
-app.use("/budgets", authenticate, budgetRouter);
+app.use("/budgets", budgetRouter);
 app.use("/expenses", expenseRouter);
