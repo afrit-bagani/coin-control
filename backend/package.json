@@ -6,8 +6,10 @@
     "build": "npx tsc -b",
     "watch:ts": "tsc --watch",
     "watch:js": "nodemon",
+    "migrate:dev": "dotenv -e .env.development -- npx prisma migrate dev",
+    "migrate:prod": "dotenv -e .env.production -- npx prisma migrate deploy",
     "dev": "cross-env NODE_ENV=development concurrently \"npm run watch:ts\" \"npm run watch:js\"",
-    "start": "npm run build && cross-env NODE_ENV=production node ./dist/index.js"
+    "start": "npm run migrate:prod && npm run build && cross-env NODE_ENV=production node ./dist/index.js"
   },
   "type": "commonjs",
   "dependencies": {
@@ -29,6 +31,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/nodemailer": "^6.4.17",
     "cross-env": "^10.0.0",
+    "dotenv-cli": "^10.0.0",
     "nodemon": "^3.1.10",
     "prisma": "^6.11.1",
     "typescript": "^5.8.3"
