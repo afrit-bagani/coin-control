@@ -21,7 +21,9 @@ const PORT = process.env.PORT || 3000;
     await prisma.$connect();
     console.log("🐘 Connected to postgreSQL...");
     app.listen(PORT, () => {
-      console.log(`🔆 Server is running on port: ${PORT}`);
+      console.log(
+        `🔆 Server running in ${process.env.NODE_ENV} on port ${PORT}`
+      );
     });
   } catch (error) {
     console.error(`⚠️ Error while starting server: \n`, error);
