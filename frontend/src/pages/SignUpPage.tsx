@@ -23,7 +23,7 @@ export const signUpAction = async ({ request }: { request: Request }) => {
     });
     const data = await res.json();
     if (!res.ok || !data.success) {
-      toast.error(data.message);
+      toast.error(data.error);
       throw new Error(data.error);
     }
     toast.success(data.message);
