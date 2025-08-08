@@ -15,7 +15,7 @@ export default function VerifyEmailPage() {
     (async () => {
       try {
         const res = await fetch(`${BACKEND_URL}/auth/verify?token=${token}`, {
-          method: "POST",
+          method: "GET",
         });
         const data = await res.json();
         if (!res.ok || !data.success) {
