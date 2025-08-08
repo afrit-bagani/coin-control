@@ -47,11 +47,7 @@ export default function App() {
     },
     {
       path: "*",
-      element: (
-        <RequireAuth>
-          <NotFoundPage />
-        </RequireAuth>
-      ),
+      element: <NotFoundPage />,
     },
   ]);
 
