@@ -9,4 +9,4 @@ export const authRouter = express.Router();
 
 authRouter.post("/signup", signUpUser);
 authRouter.post("/signin", signInUser);
-authRouter.get("/verify", verifyEmail);
+authRouter.post("/verify", verifyEmail);

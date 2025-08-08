@@ -7,25 +7,29 @@ import { BACKEND_URL } from "../config";
 export default function VerifyEmailPage() {
   const [params] = useSearchParams();
   const token = params.get("token");
-  const [status, setStatus] = useState<"loading" | "success" | "error">(
-    "loading"
+  const [status, setStatus] = useState<"verifying" | "success" | "error">(
+    "verifying"
   );
 
   useEffect(() => {
-    fetch(`${BACKEND_URL}/auth/verify?token=${token}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
+    (async () => {
+      try {
+        const res = await fetch(`${BACKEND_URL}/auth/verify?token=${token}`, {
+          method: "POST",
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          setStatus("error");
+        } else if (data.success) {
           setStatus("success");
         }
-      })
-      .catch((err) => {
-        console.error("Error while sending token: \n", err);
-        setStatus("error");
-      });
+      } catch (error) {
+        console.error("Error while sending token: \n", error);
+      }
+    })();
   }, [token]);
 
-  if (status === "loading") {
+  if (status === "verifying") {
     return (
       <p className="mt-44 text-orange-500 text-2xl text-center font-medium">
         Verifying...
@@ -39,9 +43,16 @@ export default function VerifyEmailPage() {
       </h1>
     );
   }
+  if (status === "error") {
+    return (
+      <p className="text-red-500 text-4xl md:text-2xl text-center font-medium -mt-44">
+        Verification failed. The link may be expired.
+      </p>
+    );
+  }
   return (
     <p className="text-red-500 text-4xl md:text-2xl text-center font-medium -mt-44">
-      Verification failed. The link may be expired.
+      ABc
     </p>
   );
 }
