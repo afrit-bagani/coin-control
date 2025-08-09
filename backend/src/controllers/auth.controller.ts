@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 // local import
 import { prisma } from "../index";
-import { ACCESS_TOKEN_EXPIRY, ACCESS_TOKEN_SECRET } from "../config";
+import { ACCESS_TOKEN_EXPIRY, ACCESS_TOKEN_SECRET } from "../utils/config";
 import { checkPassword, createUser, findUserByEmail } from "../db/auth.db";
 import { getErrorMessage } from "../utils/error";
 import { errorResponse, successResponse } from "../utils/response";

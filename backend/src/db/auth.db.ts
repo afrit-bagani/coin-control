@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 import { prisma } from "../index";
-import { FRONTEND_URL } from "../config";
+import { FRONTEND_URL } from "../utils/config";
 import { sendVerificationEmail } from "../utils/mailer";
 
 type CreateUserType = {
@@ -24,10 +24,10 @@ export const createUser = async ({ name, email, password }: CreateUserType) => {
   // 1) Check user exist or not
   const user = await findUserByEmail(email);
   if (!user) {
-    // 2) Hass the password
+    // 1) Hass the password
     const hasshedPassword = await bcrypt.hash(password, 5);
 
-    // 3) Create user
+    // 2) Create user
     const user = await prisma.user.create({
       data: {
         name: name,

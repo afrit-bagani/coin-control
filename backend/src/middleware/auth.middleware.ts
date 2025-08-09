@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 // Local import
 import { prisma } from "../index";
-import { ACCESS_TOKEN_SECRET } from "../config";
+import { ACCESS_TOKEN_SECRET } from "../utils/config";
 import { errorResponse } from "../utils/response";
 import { getErrorMessage } from "../utils/error";
 
